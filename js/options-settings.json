@@ -1,0 +1,20 @@
+{
+    "timing":600,
+    "backgroundColor":"#ffffff",
+    "imageMode":["vignete", "background"],
+    "animation":["fade", "sliding-righttoleft"],
+    "useFullPage":[true, false],
+    "showInterface":[true, false],
+    "showMenu":[true, false],
+    "automaticNext":[true, false],
+    "endScreen":{
+        "results":{
+            "mode":["percent","numberof"]
+        },
+        "image":{
+            "option":["background","vignete"],
+            "url":"images/endscreen.jpg"
+        },
+        "message":"End message text"
+    }
+}
