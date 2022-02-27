@@ -1,15 +1,74 @@
 <?php
-function parseArray($arr, $ind = "") {
-    $indent = "&nbsp;&nbsp;&nbsp;&nbsp;";
+$setdata = file_get_contents("./js/options.json");  
+$setdata = json_decode($setdata, true);
+function parseArray($arr=[], $setdata = [], $ind = "") {
+    $returnHtml = '';
     foreach($arr as $key => $value)  
     {
-        if (!is_array($value)) {
-            print_r($ind . $key . ": " . $value . '<br/> '); 
+        if ($value['type'] != 'subsection'){
+            $varName = $key;
+            $returnHtml .= '<div id="' . $key . '" class="options-section">';
+            $returnHtml .= '<h3 class="has-tooltip" tooltip="' . $value['description'] . '">' . $value['title'] . '</h3>';
+            if ($value['type'] == 'input') $returnHtml .= '<input  name="'.$key.' type="number" id="timing" value="' . $setdata[$key] . '"/>';
+            if ($value['type'] == 'colorPicker') $returnHtml .= '<input name="colorpicker" type="color" id="colorpicker" name="'.$key.'" value="' . $setdata[$key] . '">';
+            if ($value['type'] == 'toggle') {
+                $returnHtml .= '<label class="switch"><input type="checkbox" name="'.$key.'"';
+                if ($setdata[$key]) $returnHtml .= ' checked ';
+                $returnHtml .= '><span class="slider round"></span></label>';
+            }
+            if ($value['type'] == 'buttonGroup') {
+                $returnHtml .= '<div class="button-group">';
+                foreach($value['value'] as $elm) {
+                    $returnHtml .= '<button class="btn';
+                    if ($elm['value'] == $setdata[$key]) $returnHtml .= ' chosen';
+                    $returnHtml .= '" data="' . $elm['value'] . '">' . $elm['title'] . '</button>';
+                }
+                $returnHtml .= '</div>';
+            }
+            if ($value['type'] == 'file') {
+                $returnHtml .= '<form method="post" enctype="multipart/form-data"><input type="file" name="fileToUpload" id="fileToUpload" accept=".csv" ><input type="submit" value="Upload" name="submit"></form>';
+            }
+            $returnHtml .= '</div>';
         } else {
-            print_r($ind . $key . ": <br/>");
-            parseArray($value, $ind . $indent);
+            $returnHtml .= '<div id="' . $key . '" class="options-subsection">';
+            $returnHtml .= '<h3 class="has-tooltip" tooltip="' . $value['description'] . '" style="min-width: 100%;">' . $value['title'] . '</h3>';
+            $returnHtml .= parseArray($value['values'], $setdata[$key]);
+            $returnHtml .= '</div>';
         }
+        
     }
+    return $returnHtml;
+}
+?>
+
+<?php
+// SIMPLE SLUGIFY FUNCTION
+function slugify($string){
+    return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '_', $string), '_'));
+}
+?>
+
+<?php
+// SIMPLE UPLOAD SCRIPT
+function uploadFile () {
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = slugify(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+}
+
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    uploadFile ();
 }
 ?>
 <!DOCTYPE html>
@@ -25,6 +84,7 @@ function parseArray($arr, $ind = "") {
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style-ver-1.0.css">
+        <link rel="stylesheet" href="css/style-settings-ver-1.0.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -50,16 +110,17 @@ function parseArray($arr, $ind = "") {
         </section>
         <section class="settings-options">
             <div class="wrapper">
-                <form method="post" enctype="multipart/form-data">
-                <?php   
-                          $data = file_get_contents("./js/options-settings.json");  
-                          $data = json_decode($data, true);  
-                          parseArray($data);
-                          ?> 
+                <?php echo '<h3>General options</h3>' ?>
+                <form method="post" enctype="multipart/form-data" id="settings-form">
+                    <?php   
+                        $data = file_get_contents("./js/options-settings.json");  
+                        $data = json_decode($data, true);
+                        echo parseArray($data, $setdata);
+                    ?> 
                     <input type="submit" value="Save settings" name="submit" />
                 </form>
             </div>
         </section>
-        <script src="" async defer></script>
+        <script src="js/main-settings.js" async defer></script>
     </body>
 </html>

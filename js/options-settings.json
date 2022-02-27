@@ -1,20 +1,81 @@
 {
-    "timing":600,
-    "backgroundColor":"#ffffff",
-    "imageMode":["vignete", "background"],
-    "animation":["fade", "sliding-righttoleft"],
-    "useFullPage":[true, false],
-    "showInterface":[true, false],
-    "showMenu":[true, false],
-    "automaticNext":[true, false],
+    "timing":{
+        "title": "Timing",
+        "description": "Ammount of miliseconds used in animations",
+        "type": "input",
+        "value": 600
+    },
+    "backgroundColor":{
+        "title": "Background color",
+        "description": "Pick a color of background",
+        "type": "colorPicker",
+        "value": "#ffffff"
+    },
+    "imageMode":{
+        "title": "Images as background",
+        "description": "You can add images to individual questions. If question has immage this option will choose how it is presented",
+        "type": "toggle",
+        "value": [true, false]
+    },
+    "animation":{
+        "title": "Choose animation type",
+        "description": "Animation type to change the questions",
+        "type": "buttonGroup",
+        "value": [{"title":"Fade", "value":"fade"},{"title":"Slide from right", "value":"sliding-righttoleft"}]
+    },
+    "useFullPage":{
+        "title": "Use full width",
+        "description": "Fill whole page with content",
+        "type": "toggle",
+        "value": [{"tite":"Yes", "value":true},{"tite":"No", "value":false}]
+    },
+    "showInterface":{
+        "title": "Show interface",
+        "description": "",
+        "type": "toggle",
+        "value": [{"tite":"Yes", "value":true},{"tite":"No", "value":false}]
+    },
+    "showMenu":{
+        "title": "Show menu on quiz page",
+        "description": "",
+        "type": "toggle",
+        "value": [{"tite":"Yes", "value":true},{"tite":"No", "value":false}]
+    },
+    "automaticNext":{
+        "title": "Automaticaly go to next question",
+        "description": "If chosen you will not be able to revide your answer. If not, there will be 'Next' button under question",
+        "type": "toggle",
+        "value": [{"tite":"Yes", "value":true},{"tite":"No", "value":false}]
+    },
     "endScreen":{
-        "results":{
-            "mode":["percent","numberof"]
-        },
-        "image":{
-            "option":["background","vignete"],
-            "url":"images/endscreen.jpg"
-        },
-        "message":"End message text"
+        "title": "Choose end screen options",
+        "description": "",
+        "type": "subsection",
+        "values": {
+            "results":{
+                "title": "Show results as percent of correct answers",
+                "description": "",
+                "type": "toggle",
+                "value": [{"tite":"Yes", "value":true},{"tite":"No", "value":false}]
+            },
+            "image":{
+                "title": "End image",
+                "description": "",
+                "type": "file",
+                "value": "images/endscreen.jpg"
+            },
+            "imageMode":{
+                "title": "Show images as background",
+                "description": "You can add images to individual questions. If question has immage this option will choose how it is presented",
+                "type": "toggle",
+                "value": [true, false]
+            },
+            "message":{
+                "title": "End image",
+                "description": "",
+                "type": "input",
+                "value": "End message text"
+            }
+        }
     }
 }
