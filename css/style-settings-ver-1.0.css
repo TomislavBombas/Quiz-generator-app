@@ -1,0 +1,160 @@
+/*
+*  html5resetcss
+*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+body{line-height:1}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+input,select{vertical-align:middle}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;0,700;0,900;1,100;1,400;1,700;1,900&display=swap');
+
+
+.options-section {
+    padding: 10px;
+}
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+input[type="number"] {
+    display: inline-block;
+}
+input[type="color"] {
+    padding:0;
+    width: 44px;
+    height: 34px;
+}
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:hover {
+    background-color: #ddd;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+#settings-form {
+
+}
+#settings-form .options-section {
+    display: inline-block;
+    width: calc(33% - 33px);
+    vertical-align: top;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 80px;
+}
+#settings-form .options-section .options-subsection {
+    margin:0;
+    width: 100%;
+}
+#settings-form .options-section:nth-child(3n){
+    margin-right:0;
+}
+#settings-form .options-section>* {
+    display: block;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+#settings-form .options-section h3 {
+    margin-bottom: 20px;
+}
+#settings-form .options-subsection {
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+    padding-top: 15px;
+}
+
+.button-group button {
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    transition: background 0.6s ease;
+}
+.button-group button:hover {
+    background-color: #eee;
+}
+.button-group button.chosen {
+    background-color: #2196F3;
+    color: #fff;
+    border-color:#2196F3;
+}
+.button-group button.chosen:hover {
+    background-color: #1484df;
+}
+.button-group button:first-child {
+    border-radius: 100px 0px 0px 100px;
+}
+.button-group button:last-child {
+    border-radius: 0px 100px 100px 0px;
+}

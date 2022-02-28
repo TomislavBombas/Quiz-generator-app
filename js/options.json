@@ -1,20 +1,16 @@
 {
     "timing":600,
         "backgroundColor":"#ffffff",
-        "imageMode":"vignete",
+        "imageMode":false,
         "animation":"fade",
         "useFullPage":false,
         "showInterface":true,
         "showMenu":true,
         "automaticNext":true,
         "endScreen":{
-            "results":{
-                "mode":"percent"
-            },
-            "image":{
-                "option":"background",
-                "url":"images/endscreen.jpg"
-            },
+            "results":true,
+            "image":"images/endscreen.jpg",
+            "imageMode": true,
             "message":"End message text"
         }
 }
