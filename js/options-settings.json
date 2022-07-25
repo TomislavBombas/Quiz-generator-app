@@ -11,6 +11,18 @@
         "type": "colorPicker",
         "value": "#ffffff"
     },
+    "showAllQuestions": {
+        "title": "Show all questions",
+        "description": "Show all questions immediately, questionary style",
+        "type": "toggle",
+        "value": [true, false]
+    },
+    "useImages": {
+        "title": "Use images in questions",
+        "description": "If you want to use images as decoration for questions",
+        "type": "toggle",
+        "value": [true, false]
+    },
     "imageMode":{
         "title": "Images as background",
         "description": "You can add images to individual questions. If question has immage this option will choose how it is presented",
